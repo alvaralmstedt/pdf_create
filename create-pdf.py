@@ -10,7 +10,6 @@ mypdf = 'mypdffile.pdf'
 c = canvas.Canvas(mypdf, pagesize=A4)
 frontimage = 'SAsidelog.png'
 genomics = 'genomics_core.png'
-bioinf = 'bioinformatics_core.png'
 
 def get_image(path, width):
 	img = utils.ImageReader(path)
@@ -20,7 +19,6 @@ def get_image(path, width):
 	return height
 newheight_fac = get_image(frontimage, 20)
 newheight_gen = get_image(genomics, 8)
-newheight_bio = get_image(bioinf, 6)
 
 #ypos=400
 #attendee_data = csv.reader(open(data_file,"rb"))
@@ -32,7 +30,12 @@ newheight_bio = get_image(bioinf, 6)
 
 c.drawImage(frontimage, 8, 7, width=20*cm, height=newheight_fac*cm, mask='auto')
 c.drawImage(genomics, 150, 640, width=8*cm, height=newheight_gen*cm, mask='auto')
-c.drawImage(bioinf, 70, 120, width=6*cm, height=newheight_bio*cm, mask='auto')
+c.setFont('Helvetica', 18, leading=None)
+c.drawString(160, 600, 'Bioinformatics')
+c.setFont('Helvetica', 15, leading=None)
+c.drawString(160, 580, 'Core Facility')
+c.setFont('Helvetica', 35, leading=None)
+c.drawCentredString(160, 580, '')
 
 #story = []
 #story.append(get_image(frontimage, width=21*cm))
