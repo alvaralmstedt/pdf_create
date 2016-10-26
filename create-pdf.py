@@ -20,7 +20,7 @@ def get_image(path, width):
 	return height
 newheight_fac = get_image(frontimage, 20)
 newheight_gen = get_image(genomics, 8)
-#newheight_bio = get_image(bioinf, 6)
+newheight_bio = get_image(bioinf, 6)
 
 #ypos=400
 #attendee_data = csv.reader(open(data_file,"rb"))
@@ -30,9 +30,9 @@ newheight_gen = get_image(genomics, 8)
 #	ypos=ypos+40
 #	c.drawCentredString(215, ypos, datastring)
 
-c.drawImage(frontimage, 8, 7, width=20*cm, height=newheight_fac*cm)
-c.drawImage(genomics, 150, 640, width=8*cm, height=newheight_gen*cm)
-#c.drawImage(bioinf, 70, 120, width=6*cm, height=newheight_bio*cm)
+c.drawImage(frontimage, 8, 7, width=20*cm, height=newheight_fac*cm, mask='auto')
+c.drawImage(genomics, 150, 640, width=8*cm, height=newheight_gen*cm, mask='auto')
+c.drawImage(bioinf, 70, 120, width=6*cm, height=newheight_bio*cm, mask='auto')
 
 #story = []
 #story.append(get_image(frontimage, width=21*cm))
