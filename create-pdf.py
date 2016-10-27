@@ -35,7 +35,7 @@ c.drawString(160, 600, 'Bioinformatics')
 c.setFont('Helvetica', 15, leading=None)
 c.drawString(160, 580, 'Core Facility')
 c.setFont('Helvetica', 35, leading=None)
-c.drawCentredString(160, 580, '')
+c.drawCentredString(160, 480, 'Sequencing Report')
 
 #story = []
 #story.append(get_image(frontimage, width=21*cm))
