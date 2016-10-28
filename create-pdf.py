@@ -1,8 +1,15 @@
+from  reportlab.lib.styles import ParagraphStyle as PS
+from  reportlab.platypus import PageBreak
+from  reportlab.platypus.paragraph import Paragraph
+from  reportlab.platypus.doctemplate import PageTemplate, BaseDocTemplate
+from  reportlab.platypus.tableofcontents import TableOfContents
+from reportlab.lib.styles import getSampleStyleSheet
+from  reportlab.platypus.frames import Frame
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import Image, Frame
 import csv
-from reportlab.lib.units import cm
+from reportlab.lib.units import cm, inch
 from reportlab.lib import utils
 from reportlab.lib.colors import pink, black, red, blue, green
 import sys
@@ -60,12 +67,38 @@ c.drawString(160, 340, 'Project:            G16-032')
 
 c.showPage()
 
-#for row in data:
-#	print row
-#        c.setFont('Helvetica', 8, leading=None)
-#        ypos=ypos+10
-#        c.drawCentredString(215, ypos, row)
-#
+
+c.setFillGray(0.25)
+c.setFont('Helvetica-Bold', 22, leading=None)
+c.drawString(60, 740, 'Sequencing Report')
+c.setStrokeColorRGB(0.2,0.1,0.5)
+c.line(1.5*cm,720,19.5*cm,720)
+c.line(1.5*cm,435,19.5*cm,435)
+c.setFont('Helvetica-Bold', 18, leading=None)
+c.drawString(60, 690, 'Contents')
+
+"""
+ROW1 = 'Contents ................................................................................................................................. 2'
+ROW2 = 'Sequencing run information ................................................................................................... 2'
+ROW3 = 'General run information ......................................................................................................... 2'
+ROW4 = 'QC plot and statistics ............................................................................................................ 3'
+ROW5 = 'Sample information ................................................................................................................ 4'
+ROW6 = 'Data information ..................................................................................................................... 5'
+ROW7 = 'Data delivery ........................................................................................................................ 5'
+ROW8 = 'Data structure ....................................................................................................................... 5'
+c.setFont('Helvetica', 12, leading=None)
+c.drawString(65, 670, ROW1)
+c.drawString(65, 650, ROW2)
+c.drawString(70, 630, ROW3)
+c.drawString(70, 610, ROW4)
+c.drawString(65, 590, ROW5)
+c.drawString(65, 570, ROW6)
+c.drawString(70, 550, ROW7)
+c.drawString(70, 530, ROW8)
+"""
+
+c.showPage()
+
 
 c.save()
 
