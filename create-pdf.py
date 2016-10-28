@@ -100,6 +100,27 @@ c.drawString(70, 530, ROW8)
 c.showPage()
 
 
+c.showPage()
+
+
+c.showPage()
+
+c.setStrokeColorRGB(0.2,0.1,0.5)
+c.line(1*cm,180,20*cm,180)
+
+textobject = c.beginText()
+textobject.setTextOrigin(2*cm,160)
+textobject.setFont("Helvetica", 10)
+textobject.textLines('''Publications are important to us, as are our users. Publications are signs that our work generates interesting
+ results. This enables us to apply for more funds to keep the centre running. We would appreciate if our
+ facility is mentioned in the Acknowledgements section when data have been obtained in our lab, for example 
+by using the sentence: "We would like to thank the Genomics and Bioinformatics Core Facility platforms,
+ at the Sahlgrenska Academy, University of Gothenburg".''')
+c.drawText(textobject)
+
+c.showPage()
+
+
 c.save()
 
 
