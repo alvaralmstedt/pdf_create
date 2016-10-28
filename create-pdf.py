@@ -18,6 +18,10 @@ ARGUMENTLIST = sys.argv
 DATE = ARGUMENTLIST[1]
 DATAFILE = ARGUMENTLIST[2]
 INVESTIGATOR = ARGUMENTLIST[3]
+INSTRUMENT = ARGUMENTLIST[4]
+RUNID = ARGUMENTLIST[5]
+#PASSWORD = ARGUMENSTLIST[6]
+
 
 data = csv.reader(open(DATAFILE,"rb"))
 DATALIST = list(data)
@@ -62,7 +66,7 @@ c.drawString(160, 360, INVEST)
 c.setFont('Helvetica', 15, leading=None)
 PROJ = DATALIST[3][1]
 PROJECT = 'Project:            ' + PROJ
-c.drawString(160, 340, 'Project:            G16-032')
+c.drawString(160, 340, PROJECT)
 
 
 c.showPage()
@@ -77,7 +81,6 @@ c.line(1.5*cm,435,19.5*cm,435)
 c.setFont('Helvetica-Bold', 18, leading=None)
 c.drawString(60, 690, 'Contents')
 
-"""
 ROW1 = 'Contents ................................................................................................................................. 2'
 ROW2 = 'Sequencing run information ................................................................................................... 2'
 ROW3 = 'General run information ......................................................................................................... 2'
@@ -95,7 +98,36 @@ c.drawString(65, 590, ROW5)
 c.drawString(65, 570, ROW6)
 c.drawString(70, 550, ROW7)
 c.drawString(70, 530, ROW8)
-"""
+
+
+RUNINFOLISTc = []
+RUNINFOLISTc.append(RUNID)
+RUNINFOLISTc.append(RUNID.split("_")[0])
+RUNINFOLISTc.append(INSTRUMENT)
+READLENGTH = '2x' + DATALIST[12][0]
+RUNINFOLISTc.append(READLENGTH)
+RUNINFOLISTc.append('placeholder1')
+RUNINFOLISTc.append('placeholder2')
+RUNINFOLISTc.append('placeholder3')
+RUNINFOLISTc.append('placeholder4')
+
+RUNINFOYpos = 380
+RUNINFOLIST = ['Run ID', 'Date', 'Instrument', 'Read length', 'Reagent kit version', 'Application', 'Library preperation kit', 'Protocol']
+c.setFont('Helvetica-Bold', 12, leading=None)
+for i in RUNINFOLIST:
+	c.drawString(65, RUNINFOYpos, i)
+	RUNINFOYpos= RUNINFOYpos - 20
+	if i == RUNINFOLIST[4] or i == RUNINFOLIST[6]:
+		RUNINFOYpos = RUNINFOYpos - 30
+
+RUNINFOYpos = 380
+c.setFont('Helvetica', 12, leading=None)
+for i in RUNINFOLISTc:
+        c.drawString(330, RUNINFOYpos, i)
+        RUNINFOYpos= RUNINFOYpos - 20
+        if i == RUNINFOLISTc[4] or i == RUNINFOLISTc[6]:
+                RUNINFOYpos = RUNINFOYpos - 30
+
 
 c.showPage()
 
@@ -104,6 +136,10 @@ c.showPage()
 
 
 c.showPage()
+
+
+
+
 
 c.setStrokeColorRGB(0.2,0.1,0.5)
 c.line(1*cm,180,20*cm,180)
