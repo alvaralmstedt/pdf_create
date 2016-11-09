@@ -1,10 +1,10 @@
-from  reportlab.lib.styles import ParagraphStyle as PS
-from  reportlab.platypus import PageBreak
-from  reportlab.platypus.paragraph import Paragraph
-from  reportlab.platypus.doctemplate import PageTemplate, BaseDocTemplate
-from  reportlab.platypus.tableofcontents import TableOfContents
+from reportlab.lib.styles import ParagraphStyle as PS
+from reportlab.platypus import PageBreak
+from reportlab.platypus.paragraph import Paragraph
+from reportlab.platypus.doctemplate import PageTemplate, BaseDocTemplate
+from reportlab.platypus.tableofcontents import TableOfContents
 from reportlab.lib.styles import getSampleStyleSheet
-from  reportlab.platypus.frames import Frame
+from reportlab.platypus.frames import Frame
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import Image, Frame
@@ -131,6 +131,12 @@ for i in RUNINFOLISTc:
 
 c.showPage()
 
+DATABOOL = False
+for i in DATALIST:
+	if i[0] == "Sample_ID":
+		DATABOOL = True
+	if DATABOOL == True:
+		print i[0] + "\t" + i[4] + "\t" + i[5]	
 
 c.showPage()
 
