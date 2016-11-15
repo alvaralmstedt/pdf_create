@@ -13,6 +13,9 @@ from reportlab.lib.units import cm, inch
 from reportlab.lib import utils
 from reportlab.lib.colors import pink, black, red, blue, green
 import sys
+import openpyxl
+from openpyxl.cell import get_column_letter, column_index_from_string
+
 
 ARGUMENTLIST = sys.argv
 DATE = ARGUMENTLIST[1]
@@ -21,7 +24,25 @@ INVESTIGATOR = ARGUMENTLIST[3]
 INSTRUMENT = ARGUMENTLIST[4]
 RUNID = ARGUMENTLIST[5]
 #PASSWORD = ARGUMENSTLIST[6]
-
+EXCELFILE = openpyxl.load_workbook('161017_NB501037_0079_AH3YLKBGXY.xlsx')
+SAMPLESSHEET = EXCELFILE.get_sheet_by_name('Samples')
+EXCELBOOL = True
+EXCELSTART = False
+XLLINES = 0
+EXCELTABLE = []
+while EXCELBOOL == True:
+	XLLINES += 1
+	if SAMPLESSHEET['F%s' % XLLINES].value == 'Raw Reads':
+		EXCELSTART = True
+		continue
+	if EXCELSTART == True:
+	        if '=SUM' in str(SAMPLESSHEET['F%s' % XLLINES].value):
+                	EXCELBOOL = False
+			continue
+		else:
+			EXCELTABLE.append(str(SAMPLESSHEET['F%s' % XLLINES].value))
+	
+print EXCELTABLE
 
 data = csv.reader(open(DATAFILE,"rb"))
 DATALIST = list(data)
@@ -131,12 +152,20 @@ for i in RUNINFOLISTc:
 
 c.showPage()
 
+DATAARRAY = []
 DATABOOL = False
 for i in DATALIST:
 	if i[0] == "Sample_ID":
 		DATABOOL = True
 	if DATABOOL == True:
-		print i[0] + "\t" + i[4] + "\t" + i[5]	
+		DATAARRAY.append([i[0], i[4], i[5]])	
+print DATAARRAY
+
+COUNTAPPEND = 0
+for i in DATAARRAY:
+	DATAARRAY.append([COUNTAPPEND]
+	COUNTAPPEND += 1
+	
 
 c.showPage()
 
